@@ -1,7 +1,12 @@
 import './globals.css';
 
+// Vercel exposes the production domain at build time; locally we fall back to localhost.
+const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000');
+
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fomi-studio.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Fomi — Create',
     template: '%s · Fomi',
