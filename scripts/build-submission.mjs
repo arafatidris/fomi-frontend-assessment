@@ -144,12 +144,13 @@ const html = `<!doctype html>
     <li><b>Deliberate tweaks:</b> the Generate coral is deepened to <code>#C0533B</code> so white text passes WCAG AA, the copy typos are fixed, and the credit cost is shown before you click.</li>
   </ul>
 
-  <h3>Measured quality (Lighthouse, production build)</h3>
+  <h3>Measured quality (Lighthouse 12, live deployment)</h3>
   <table>
     <tr><th>Page</th><th>Performance (mobile / desktop)</th><th>Accessibility</th><th>Best practices</th><th>SEO</th><th>CLS</th></tr>
-    <tr><td>Create</td><td class="score">90 / 99</td><td class="score">100</td><td class="score">100</td><td class="score">100</td><td>0</td></tr>
-    <tr><td>Studio</td><td class="score">90 / 99</td><td class="score">100</td><td class="score">100</td><td class="score">100</td><td>0</td></tr>
+    <tr><td>Create</td><td class="score">91–96 / 100</td><td class="score">100</td><td class="score">100</td><td class="score">100</td><td>0</td></tr>
+    <tr><td>Studio</td><td class="score">86–96 / 100</td><td class="score">100</td><td class="score">100</td><td class="score">100</td><td>0</td></tr>
   </table>
+  <p class="caption">Mobile uses Lighthouse’s simulated slow 4G and 4× CPU slowdown; scores vary between runs, so ranges are shown.</p>
 </section>
 
 <section class="page">

@@ -125,20 +125,21 @@ Built in from the first component:
 
 ## Performance
 
-- `next/image` everywhere with AVIF/WebP, accurate `sizes` and blur placeholders. The LCP image is high priority; the rest load lazily.
+- `next/image` everywhere with AVIF/WebP, accurate `sizes` and blur placeholders. A single LCP image per page is high priority and decodes with the first paint; the rest load lazily.
+- Tailwind's stylesheet (~15 KB gzip) is inlined into the HTML, removing the render-blocking CSS request for first-time visitors. Under mobile throttling this roughly halved time to first paint (~810 → ~450 ms on Studio).
 - Overlays (viewer, dialogs, ⌘K) are code-split with `next/dynamic` and load on first use.
 - Popover lists, collapsed sections and mobile sheets mount only when opened.
 - `content-visibility: auto` on feed items, videos fetched only on hover, and fonts self-hosted via `next/font`.
 - Immutable caching for media.
 
-**Lighthouse (production build)**
+**Lighthouse (live deployment)**
 
 | Page | Performance (mobile / desktop) | Accessibility | Best practices | SEO | CLS |
 |---|---|---|---|---|---|
-| Create `/` | 90 / 99 | 100 | 100 | 100 | 0 |
-| Studio `/studio` | 90 / 99 | 100 | 100 | 100 | 0 |
+| Create `/` | 91–96 / 100 | 100 | 100 | 100 | 0 |
+| Studio `/studio` | 86–96 / 100 | 100 | 100 | 100 | 0 |
 
-Mobile scores use Lighthouse's default throttling (slow 4G, 4× CPU).
+Measured with Lighthouse 12 on the Vercel deployment. Mobile uses Lighthouse's default simulated throttling (slow 4G, 4× CPU slowdown); its scores vary between runs, so the range is shown.
 
 ## Running locally
 
@@ -148,7 +149,10 @@ npm run dev          # http://localhost:3000 (Studio at /studio)
 npm run lint
 npm run build && npm start
 npm run media:build  # optional: rebuild /public/media from sources (downloads ~150 MB once)
+npm run submission -- --name="Your Name"   # optional: rebuild the submission PDF (uses local Chrome)
 ```
+
+Pushes to `main` deploy to production on Vercel automatically.
 
 Requires Node 20.9+.
 
