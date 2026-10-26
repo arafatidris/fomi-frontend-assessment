@@ -1,0 +1,340 @@
+@import 'tailwindcss';
+
+/* Dark variant follows the data-theme attribute set before first paint. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/*
+ * Design tokens
+ * -------------
+ * One semantic vocabulary (canvas, surface, panel, ink, accent…) with three
+ * value sets: Create light, Create dark and the Studio's neutral dark. Shared
+ * UI primitives use the semantic names only, so they adapt to the product
+ * they render in. Text/background pairs are chosen to meet WCAG AA (4.5:1).
+ */
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-panel: var(--c-panel);
+  --color-panel-2: var(--c-panel-2);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-field: var(--c-field-border);
+  --color-ink: var(--c-ink);
+  --color-ink-2: var(--c-ink-2);
+  --color-ink-3: var(--c-ink-3);
+  --color-accent: var(--c-accent);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-accent-solid: var(--c-accent-solid);
+  --color-accent-solid-hover: var(--c-accent-solid-hover);
+  --color-on-accent: var(--c-on-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-ring: var(--c-ring);
+  --color-success: var(--c-success);
+  --color-success-soft: var(--c-success-soft);
+  --color-warning: var(--c-warning);
+  --color-danger: var(--c-danger);
+  --color-danger-soft: var(--c-danger-soft);
+  --color-scrim: var(--c-scrim);
+
+  --font-sans: var(--font-ui), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-ui-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --shadow-card: var(--shadow-card-value);
+  --shadow-float: var(--shadow-float-value);
+  --shadow-pop: var(--shadow-pop-value);
+}
+
+@theme {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  --animate-fade-up: fade-up 420ms var(--ease-out) both;
+  --animate-fade-in: fade-in 240ms var(--ease-out) both;
+  --animate-pop-in: pop-in 220ms var(--ease-out) both;
+  --animate-develop: develop 900ms var(--ease-out) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-flash-ring: flash-ring 1.4s var(--ease-out) both;
+  --animate-shake: shake 420ms ease-in-out;
+
+  --breakpoint-3xl: 112rem;
+}
+
+:root {
+  color-scheme: light;
+  --font-ui: system-ui;
+  --font-ui-mono: ui-monospace;
+
+  --c-canvas: #faf7f4;
+  --c-surface: #ffffff;
+  --c-surface-2: #fbf8f6;
+  --c-panel: #f6eae4;
+  --c-panel-2: #efdfd7;
+  --c-line: #ece3dd;
+  --c-line-strong: #dcd0c8;
+  --c-field-border: #2b2522;
+  --c-ink: #1c1917;
+  --c-ink-2: #57504b;
+  --c-ink-3: #786f69;
+  --c-accent: #e8917b;
+  --c-accent-ink: #b4472f;
+  /* The mockup's coral, deepened so white button text reaches 4.6:1. */
+  --c-accent-solid: #c0533b;
+  --c-accent-solid-hover: #ad4630;
+  --c-on-accent: #ffffff;
+  --c-accent-soft: #fbe5dd;
+  --c-ring: #d8684d;
+  --c-success: #2b8a5e;
+  --c-success-soft: #e2f3e9;
+  --c-warning: #9a6210;
+  --c-danger: #c03434;
+  --c-danger-soft: #fbe6e6;
+  --c-scrim: rgb(28 25 23 / 0.5);
+
+  --shadow-card-value: 0 1px 2px rgb(60 35 25 / 0.06), 0 1px 1px rgb(60 35 25 / 0.03);
+  --shadow-float-value: 0 12px 32px -14px rgb(70 40 28 / 0.22), 0 2px 6px rgb(70 40 28 / 0.06);
+  --shadow-pop-value: 0 22px 48px -16px rgb(40 22 15 / 0.3), 0 6px 14px rgb(40 22 15 / 0.08);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --c-canvas: #12100e;
+  --c-surface: #1c1916;
+  --c-surface-2: #23201c;
+  --c-panel: #1f1a17;
+  --c-panel-2: #2c2420;
+  --c-line: #2e2723;
+  --c-line-strong: #433a34;
+  --c-field-border: #75665d;
+  --c-ink: #f6f0ec;
+  --c-ink-2: #c3b8b1;
+  --c-ink-3: #998d86;
+  --c-accent: #f0a08b;
+  --c-accent-ink: #f3a993;
+  --c-accent-solid: #c0533b;
+  --c-accent-solid-hover: #cf5f46;
+  --c-on-accent: #ffffff;
+  --c-accent-soft: #3a2620;
+  --c-ring: #f0a08b;
+  --c-success: #5ccf97;
+  --c-success-soft: #173326;
+  --c-warning: #e9b45c;
+  --c-danger: #f07474;
+  --c-danger-soft: #3a1c1c;
+  --c-scrim: rgb(0 0 0 / 0.62);
+
+  --shadow-card-value: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-float-value: 0 14px 36px -14px rgb(0 0 0 / 0.65), 0 2px 6px rgb(0 0 0 / 0.35);
+  --shadow-pop-value: 0 24px 56px -16px rgb(0 0 0 / 0.75), 0 6px 16px rgb(0 0 0 / 0.4);
+}
+
+/*
+ * Studio uses neutral, chroma-free greys: tinted chrome biases how colors in
+ * an image are perceived, the same reason grading suites use neutral grey.
+ */
+.studio {
+  color-scheme: dark;
+  --c-canvas: #0b0b0c;
+  --c-surface: #141416;
+  --c-surface-2: #1b1b1e;
+  --c-panel: #101012;
+  --c-panel-2: #232327;
+  --c-line: rgb(255 255 255 / 0.07);
+  --c-line-strong: rgb(255 255 255 / 0.13);
+  --c-field-border: rgb(255 255 255 / 0.16);
+  --c-ink: #ededef;
+  --c-ink-2: #a5a5ad;
+  --c-ink-3: #86868e;
+  --c-accent: #f2876d;
+  --c-accent-ink: #f6a089;
+  --c-accent-solid: #f2876d;
+  --c-accent-solid-hover: #f79c84;
+  --c-on-accent: #1d0f0a;
+  --c-accent-soft: rgb(242 135 109 / 0.14);
+  --c-ring: #f2876d;
+  --c-success: #5fd4a0;
+  --c-success-soft: rgb(95 212 160 / 0.14);
+  --c-warning: #f0c25c;
+  --c-danger: #f07878;
+  --c-danger-soft: rgb(240 120 120 / 0.14);
+  --c-scrim: rgb(0 0 0 / 0.72);
+
+  --shadow-card-value: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-float-value: 0 16px 40px -16px rgb(0 0 0 / 0.8), 0 2px 8px rgb(0 0 0 / 0.45);
+  --shadow-pop-value: 0 24px 64px -18px rgb(0 0 0 / 0.9), 0 6px 18px rgb(0 0 0 / 0.5);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* The feed scrolls the page; keep the gutter so dialogs don't shift layout. */
+  html:has([data-product='create']) {
+    scrollbar-gutter: stable;
+  }
+
+  /* Scroll lock for any open modal, without JavaScript. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--c-canvas);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--c-accent) 32%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-ring);
+    outline-offset: 2px;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-line-strong) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--c-line-strong);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  img,
+  video {
+    -webkit-user-drag: none;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fades the edges of a horizontal scroller to hint at more content. */
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade, 24px), #000 calc(100% - var(--fade, 24px)), transparent);
+}
+
+@utility mask-fade-r {
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--fade, 48px)), transparent);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.97);
+  }
+}
+
+/* A render "developing": blurred and desaturated, resolving into focus. */
+@keyframes develop {
+  from {
+    opacity: 0;
+    filter: blur(22px) saturate(0.3) brightness(1.15);
+    transform: scale(1.06);
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 140% 0;
+  }
+  to {
+    background-position: -40% 0;
+  }
+}
+
+@keyframes shake {
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes flash-ring {
+  0%,
+  60% {
+    box-shadow: 0 0 0 3px var(--c-accent);
+  }
+  100% {
+    box-shadow: 0 0 0 3px transparent;
+  }
+}
+
+/* Theme switch: the new theme is revealed by a clip-path circle (see ThemeToggle). */
+html.theme-transition::view-transition-old(root),
+html.theme-transition::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
