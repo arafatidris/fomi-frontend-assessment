@@ -12,6 +12,9 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
+    // Tailwind keeps the stylesheet small (~15 KB gzip), so shipping it inside the
+    // HTML removes a render-blocking request for first-time visitors.
+    inlineCss: true,
   },
   turbopack: {
     rules: {

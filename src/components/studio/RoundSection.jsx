@@ -82,7 +82,7 @@ export const RoundSection = memo(function RoundSection({ roundId, aspect, focusI
         {visible.map((takeId, index) => (
           <li key={takeId}>
             <TakeCard
-              priority={priority && index < 2}
+              priority={priority && index === 0}
               takeId={takeId}
               aspect={aspect}
               sizes={grid.sizes}
