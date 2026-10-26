@@ -4,8 +4,8 @@ Two workspaces for an AI image and video platform, built with **Next.js 16, Reac
 
 | | What it is | Live |
 |---|---|---|
-| **Part A · Create** | The provided mockup, implemented as a production-quality, fully responsive generation workspace | [LIVE_URL](LIVE_URL) |
-| **Part B · Fomi Studio** | My redesign of the Image Generation Workspace for professionals: *direct, don't re-roll* | [LIVE_URL/studio](LIVE_URL/studio) |
+| **Part A · Create** | The provided mockup, implemented as a production-quality, fully responsive generation workspace | [https://fomi-studio-arafatidris.vercel.app](https://fomi-studio-arafatidris.vercel.app) |
+| **Part B · Fomi Studio** | My redesign of the Image Generation Workspace for professionals: *direct, don't re-roll* | [https://fomi-studio-arafatidris.vercel.app/studio](https://fomi-studio-arafatidris.vercel.app/studio) |
 
 Product thinking document (Part B): **[docs/PRODUCT_THINKING.md](docs/PRODUCT_THINKING.md)**
 

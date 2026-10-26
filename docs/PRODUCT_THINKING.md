@@ -1,7 +1,6 @@
 # Fomi Studio: Product Thinking
 
-**Workspace chosen:** Image Generation Workspace
-**Live:** [LIVE_URL/studio](LIVE_URL/studio) · **Code:** `src/components/studio`
+**Workspace chosen:** Image Generation Workspace · **Live:** [https://fomi-studio-arafatidris.vercel.app/studio](https://fomi-studio-arafatidris.vercel.app/studio) · **Code:** `src/components/studio`
 
 > **Thesis.** Models are getting faster, cheaper and better every quarter. When a render costs seconds and cents, generating stops being the hard part. **Directing and choosing** become the work. Fomi Studio is designed for that: *direct, don't re-roll.*
 
