@@ -46,6 +46,8 @@ export const TakeCard = memo(function TakeCard({ takeId, aspect, sizes, tabIndex
           quality={75}
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
+          // Present above-the-fold takes with the first paint, not after hydration.
+          decoding={priority ? 'sync' : 'async'}
           placeholder="blur"
           blurDataURL={take.media.blurDataURL}
           className={cn(

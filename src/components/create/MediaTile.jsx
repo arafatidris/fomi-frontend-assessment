@@ -55,6 +55,7 @@ export const MediaTile = memo(function MediaTile({
           blurDataURL={output.blurDataURL}
           loading={eager ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
+          decoding={priority ? 'sync' : 'async'}
           className="object-cover transition-transform duration-700 ease-out group-hover/tile:scale-[1.035]"
         />
         {isVideo && previewing && (
